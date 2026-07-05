@@ -1,0 +1,15 @@
+$(eval $(call addlib,appwaskerhello))
+
+APPWASKERHELLO_SRCS-y += $(APPWASKERHELLO_BASE)/wasi_wrapper.c
+
+WASKER_OBJ ?= $(APPWASKERHELLO_BASE)/wasm.o
+
+ifneq ($(filter clean properclean distclean menuconfig defconfig oldconfig help,$(MAKECMDGOALS)),)
+else
+ifeq ($(wildcard $(WASKER_OBJ)),)
+$(error Missing $(WASKER_OBJ). Generate it with wasker and place it here as wasm.o)
+endif
+endif
+
+UK_OBJS-y += $(WASKER_OBJ)
+$(eval $(call vprefix_lib,appwaskerhello,OBJS-y) += $(WASKER_OBJ))

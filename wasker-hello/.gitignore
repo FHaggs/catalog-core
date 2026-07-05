@@ -1,0 +1,4 @@
+/workdir/
+/.config
+/wasm.o
+/wasm.ll

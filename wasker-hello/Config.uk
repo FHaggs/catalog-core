@@ -1,0 +1,4 @@
+menuconfig APPWASKERHELLO
+	bool "Wasker WASI Wrapper Hello"
+	default y
+	select LIBMUSL
